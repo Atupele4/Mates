@@ -1,28 +1,18 @@
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
 import android.annotation.TargetApi;
-import android.app.IntentService;
 import android.app.admin.DevicePolicyManager;
 import android.content.*;
-import android.bluetooth.BluetoothClass;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorEventListener2;
 import android.hardware.SensorManager;
-import android.hardware.TriggerEvent;
 import android.hardware.TriggerEventListener;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Service;
-
-import java.security.Provider;
-
-import static android.bluetooth.BluetoothClass.*;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
 import android.app.Service;
 import android.content.Intent;

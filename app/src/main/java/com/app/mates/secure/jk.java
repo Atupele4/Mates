@@ -1,11 +1,8 @@
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.TriggerEvent;
-import android.hardware.TriggerEventListener;
-import android.widget.Toast;
 
 public class jk implements SensorEventListener {
     private long lastUpdate = 0;

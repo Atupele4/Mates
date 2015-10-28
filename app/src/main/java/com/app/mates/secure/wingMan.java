@@ -1,4 +1,4 @@
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
 /**
  * Created by SmartCare on 27/10/2015.

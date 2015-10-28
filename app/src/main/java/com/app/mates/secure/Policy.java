@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
 import android.app.Activity;
 import android.app.admin.DeviceAdminReceiver;

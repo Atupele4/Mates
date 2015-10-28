@@ -1,9 +1,7 @@
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
-import android.content.Context;
 import android.hardware.TriggerEvent;
 import android.hardware.TriggerEventListener;
-import android.widget.Toast;
 
 public  class TriggerListener extends TriggerEventListener {
     public void onTrigger(TriggerEvent event) {

@@ -1,4 +1,4 @@
-package com.example.smartcare.secure;
+package com.app.mates.secure;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
