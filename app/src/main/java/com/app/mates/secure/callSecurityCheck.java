@@ -8,9 +8,12 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener2;
 import android.hardware.SensorManager;
 import android.hardware.TriggerEventListener;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 import android.app.Service;
 
@@ -89,6 +92,7 @@ public class callSecurityCheck extends Service implements SensorEventListener2 {
                         lock=false;
                         DevicePolicyManager mDPM =
                                 (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
+                        sendSMS();
                         mDPM.lockNow();
                     }
 
@@ -101,6 +105,12 @@ public class callSecurityCheck extends Service implements SensorEventListener2 {
 
 
         }
+    }
+
+
+    protected void sendSMS() {
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("0977533551", null, "Phone has detected Movements", null, null);
     }
 
     @Override
