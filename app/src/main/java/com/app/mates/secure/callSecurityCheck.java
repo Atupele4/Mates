@@ -1,6 +1,7 @@
 package com.app.mates.secure;
 
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.*;
 import android.hardware.Sensor;
@@ -8,12 +9,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener2;
 import android.hardware.SensorManager;
 import android.hardware.TriggerEventListener;
-import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.widget.Toast;
 import android.app.Service;
 
@@ -31,6 +30,8 @@ public class callSecurityCheck extends Service implements SensorEventListener2 {
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 3;
+    private SmsManager sm;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -66,7 +67,7 @@ public class callSecurityCheck extends Service implements SensorEventListener2 {
 
     }
 
-    public boolean lock = false;
+    public boolean lock = true;
     @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
@@ -87,13 +88,25 @@ public class callSecurityCheck extends Service implements SensorEventListener2 {
                     last_x = x;
                     last_y = y;
                     last_z = z;
-                    lock = true;
                     if(lock){
                         lock=false;
+
                         DevicePolicyManager mDPM =
                                 (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
-                        sendSMS();
-                        mDPM.lockNow();
+                      //  mDPM.lockNow();
+
+
+                        try {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage("+260977533551", null, "secure", null, null);
+                            Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
+                        }
+
+                        catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+
                     }
 
 
@@ -105,12 +118,6 @@ public class callSecurityCheck extends Service implements SensorEventListener2 {
 
 
         }
-    }
-
-
-    protected void sendSMS() {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("0977533551", null, "Phone has detected Movements", null, null);
     }
 
     @Override
